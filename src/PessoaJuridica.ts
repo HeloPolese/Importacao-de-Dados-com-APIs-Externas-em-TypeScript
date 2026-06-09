@@ -7,16 +7,17 @@ export class PessoaJuridica {
     private _endereco: Endereco;
 
     constructor(cnpj: string, razaoSocial: string, email: string, telefone: string, endereco: Endereco) {
-        if (cnpj.length == 14) {
+       /*  if (cnpj.length == 14) {
             this._cnpj = cnpj;
         }
         else {
             throw new Error("O CNPJ deve conter 14 caracteres!");
-        }
+        } */
         this._razaoSocial = razaoSocial;
         this._email = email;
         this._telefone = telefone;
         this._endereco = endereco;
+        this._cnpj = cnpj;
     }
 
     public get cnpj():string{
@@ -39,14 +40,14 @@ export class PessoaJuridica {
         return this._endereco.toString();
     }
 
-    public set cnpj(novoCnpj:string){
+    /* public set cnpj(novoCnpj:string){
         if (novoCnpj.length == 14) {
             this._cnpj = novoCnpj;
         }
         else{
             throw new Error("O CNPJ deve conter 14 caracteres!");
         }
-    }
+    } */
 
     public set razaoSocial(novaRazaoSocial: string){
         this._razaoSocial = novaRazaoSocial;

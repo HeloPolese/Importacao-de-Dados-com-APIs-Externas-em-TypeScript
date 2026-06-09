@@ -1,4 +1,5 @@
 import { PessoaJuridica } from "./PessoaJuridica";
+import { RepositorioPessoaJuridica } from "./RepositorioPessoaJuridica";
 import { Endereco } from "./Endereco";
 
 function delay(ms: number) {
@@ -9,6 +10,7 @@ function delay(ms: number) {
     })
 }
 
+const repositorio = new RepositorioPessoaJuridica();
 
 async function fetchCNPJ(cnpj: string): Promise<PessoaJuridica> {
     try {
@@ -21,12 +23,19 @@ async function fetchCNPJ(cnpj: string): Promise<PessoaJuridica> {
 
         if (response.ok) {
             const responseJSON = await response.json();
-            console.log(responseJSON.cep);
-            const endereco = await fetchCEP(responseJSON.cep.replace(/\D/g,""));
-            console.log(endereco);
-            const obj = new PessoaJuridica(responseJSON.cnpj, responseJSON.fantasia, responseJSON.email, responseJSON.telefone, endereco);
-            console.log(obj);
-            return obj;
+            const cepEmpresa = responseJSON.cep;
+
+            const enderecoFormatado = await fetchCEP(cepEmpresa.replace(/\D/g, ""));
+            //chamo a função fetchCEP para criar um objeto do tipo Endereco, passando o cep da empresa, que é extraído do responseJSON 
+
+            const empresa = new PessoaJuridica(responseJSON.cnpj, responseJSON.fantasia, responseJSON.email, responseJSON.telefone, enderecoFormatado);
+            console.log(empresa);
+
+            
+            repositorio.adicionar(empresa); //add no new repositorio, criado lá em cima na primeira linha da função
+            console.log("Empresas cadastradas:\n" + repositorio.listar());
+
+            return empresa; // TEM QUE RETORNAR EMPRESA, POIS A PROMESSA É QUE RETORNARIAMOS UMA PESSOA JURIDICA.(PROMISE<PESSOAJURIDICA>)
 
         } else {
             throw new Error("erro ao pegar dados da api!");
@@ -34,11 +43,15 @@ async function fetchCNPJ(cnpj: string): Promise<PessoaJuridica> {
 
     }
     catch (error) {
-        throw new Error("Erro ao criar pessoa jurídica:" + error);
+        throw new Error("Erro ao criar pessoa jurídica");
     }
 }
 
-fetchCNPJ("45814425000172");
+
+fetchCNPJ("45997418000153");
+delay(21000); // slaaaaaaaaaaaaa
+fetchCNPJ("59717553000102");
+
 
 /*
 const shein: string = '45814425000172';
@@ -54,21 +67,21 @@ async function fetchCEP(cep: string): Promise<Endereco> {
     try {
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         console.log("URL:", `https://viacep.com.br/ws/${cep}/json/`);
-        
+
         const responseJSON = await response.json();
 
         if (responseJSON.erro == "true") {
             throw new Error("O CEP consultado não foi encontrado na base de dados");
         }
 
-        const obj = new Endereco(responseJSON.cep.replace(/\D/g, ""),
+        const ENDERECO = new Endereco(responseJSON.cep.replace(/\D/g, ""),
             responseJSON.logradouro,
             responseJSON.bairro,
             responseJSON.estado,
             responseJSON.ddd);
 
-        console.log("objeto Endereço criado = \n" + obj)
-        return obj;
+        console.log("objeto Endereço criado = \n" + ENDERECO)
+        return ENDERECO;
 
     }
     catch (erro) {
