@@ -46,7 +46,7 @@ async function fetchCEP(cep: string):Promise<endereco> {
     }
     catch (erro) {
         console.log('Erro ao buscar Cep:', erro);
-        throw new Error("cuu");
+        throw new Error(".");
     }
 }
 async function takeData(_cep:string) {
