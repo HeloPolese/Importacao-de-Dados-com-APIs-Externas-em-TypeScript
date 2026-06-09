@@ -7,12 +7,7 @@ export class PessoaJuridica {
     private _endereco: Endereco;
 
     constructor(cnpj: string, razaoSocial: string, email: string, telefone: string, endereco: Endereco) {
-        if (cnpj.length == 14) {
-            this._cnpj = cnpj;
-        }
-        else {
-            throw new Error("O CNPJ deve conter 14 caracteres!");
-        }
+        this._cnpj = cnpj;
         this._razaoSocial = razaoSocial;
         this._email = email;
         this._telefone = telefone;
@@ -40,12 +35,7 @@ export class PessoaJuridica {
     }
 
     public set cnpj(novoCnpj:string){
-        if (novoCnpj.length == 14) {
             this._cnpj = novoCnpj;
-        }
-        else{
-            throw new Error("O CNPJ deve conter 14 caracteres!");
-        }
     }
 
     public set razaoSocial(novaRazaoSocial: string){
