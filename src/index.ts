@@ -1,21 +1,45 @@
 import { PessoaJuridica } from "./PessoaJuridica";
 import { Endereco } from "./Endereco";
 
-async function fetchCNPJ(cnpj: string) {
+function delay(ms: number) {
+    return new Promise<void>((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    })
+}
+
+
+async function fetchCNPJ(cnpj: string): Promise<PessoaJuridica> {
     try {
-     
+        await delay(20000);
         const response = await fetch(`https://receitaws.com.br/v1/cnpj/${cnpj}`);
-        const responseJSON = await response.json();
-        const cep = responseJSON.cep.replace(/\D/g,"");
-        await takeData(cep);
+
+        if (response.status == 429) {
+            throw new Error("A API suporta somente três consultas por minuto!");
+        }
+
+        if (response.ok) {
+            const responseJSON = await response.json();
+            console.log(responseJSON.cep);
+            const endereco = await fetchCEP(responseJSON.cep.replace(/\D/g,""));
+            console.log(endereco);
+            const obj = new PessoaJuridica(responseJSON.cnpj, responseJSON.fantasia, responseJSON.email, responseJSON.telefone, endereco);
+            console.log(obj);
+            return obj;
+
+        } else {
+            throw new Error("erro ao pegar dados da api!");
+        }
 
     }
     catch (error) {
-        console.log('Erro ao buscar CNPJ:', error);
+        throw new Error("Erro ao criar pessoa jurídica:" + error);
     }
 }
 
 fetchCNPJ("45814425000172");
+
 /*
 const shein: string = '45814425000172';
 const ifesST: string = '1083865300151';
@@ -24,39 +48,31 @@ const jequiti: string = '07278350000163';
 const razer: string = '59717553000102';
 const iphone: string = '00623904000173';
 */
-type endereco = {
-    cep: string,
-    logradouro:string,
-    bairro: string,
-    estado: string,
-    ddd: string
-}
-async function fetchCEP(cep: string):Promise<endereco> {
+
+
+async function fetchCEP(cep: string): Promise<Endereco> {
     try {
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        console.log("URL:", `https://viacep.com.br/ws/${cep}/json/`);
+        
         const responseJSON = await response.json();
 
         if (responseJSON.erro == "true") {
             throw new Error("O CEP consultado não foi encontrado na base de dados");
         }
 
-        return new Promise<endereco>((resolve) => {
-            resolve(responseJSON);
-        });
+        const obj = new Endereco(responseJSON.cep.replace(/\D/g, ""),
+            responseJSON.logradouro,
+            responseJSON.bairro,
+            responseJSON.estado,
+            responseJSON.ddd);
+
+        console.log("objeto Endereço criado = \n" + obj)
+        return obj;
+
     }
     catch (erro) {
-        console.log('Erro ao buscar Cep:', erro);
-        throw new Error(".");
+        throw new Error("erro ao buscar cep" + erro);
     }
 }
-async function takeData(_cep:string) {
-    let endereco = await fetchCEP(_cep);
-    let obj = new Endereco(endereco.cep.replace(/\D/g,""), endereco.logradouro, endereco.bairro, endereco.estado, endereco.ddd);
-    console.log(obj);
-    return obj;
-}
-
-const obj1 = takeData("01001000");
-console.log(obj1);
-
-
+//fetchCEP("29010-030");
