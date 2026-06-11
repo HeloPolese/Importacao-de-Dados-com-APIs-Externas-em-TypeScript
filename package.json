@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/HeloPolese/Importacao-de-Dados-com-APIs-Externas-em-TypeScript/issues"
   },
-  "homepage": "https://github.com/HeloPolese/Importacao-de-Dados-com-APIs-Externas-em-TypeScript#readme"
+  "homepage": "https://github.com/HeloPolese/Importacao-de-Dados-com-APIs-Externas-em-TypeScript#readme",
+  "dependencies": {
+    "node-cron": "^4.2.1"
+  }
 }
