@@ -6,12 +6,7 @@ export class Endereco {
     private _ddd: string;
 
     constructor(cep: string, logradouro: string, bairro: string, estado: string, ddd: string) {
-        if (cep.length == 8) {
-            this._cep = cep;
-        }
-        else {
-            throw new Error("O cep deve conter 8 dígitos!");
-        }
+        this._cep = cep;
         this._logradouro = logradouro;
         this._bairro = bairro;
         this._estado = estado;
@@ -39,13 +34,7 @@ export class Endereco {
     }
 
     public set cep(novoCep: string) {
-        if (novoCep.length == 8) {
-            this._cep = this.cep;
-        }
-        else {
-            throw new Error("O cep deve conter 8 dígitos!");
-
-        }
+            this._cep = novoCep;
     }
 
     public set logradouro(novoLogradouro: string) {

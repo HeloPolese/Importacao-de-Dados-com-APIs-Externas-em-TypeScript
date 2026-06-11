@@ -2,9 +2,9 @@
   "name": "importacao-de-dados-com-apis-externas-em-typescript",
   "version": "1.0.0",
   "description": "Projeto em TypeScript utilizando programação assíncrona, consumo de APIs externas, Async/Await e orientação a objetos.",
-  "main": "./src/index.ts",
+  "main": "./src/test.ts",
   "scripts": {
-    "test": "node ./src/index.ts"
+    "test": "node ./src/test.ts"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,5 @@
-import { PessoaJuridica } from "./PessoaJuridica"
+import { PessoaJuridica } from "../entities/PessoaJuridica";
+
 export class RepositorioPessoaJuridica {
     private _listaPessoaJuridica: Array<PessoaJuridica> = [];
 

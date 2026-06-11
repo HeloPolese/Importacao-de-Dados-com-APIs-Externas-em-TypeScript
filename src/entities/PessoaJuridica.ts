@@ -1,4 +1,4 @@
-import { Endereco } from "./Endereco";
+import { Endereco } from "../entities/Endereco";
 export class PessoaJuridica {
     private _cnpj: string;
     private _razaoSocial: string;
@@ -55,7 +55,7 @@ export class PessoaJuridica {
     }
 
     public toString():string{
-        return "CNPJ: " + this.cnpj +
+        return "\nCNPJ: " + this.cnpj +
         "\nRazão Social: " + this.razaoSocial +
         "\nEmail: " + this.email +
         "\nTelefone: " + this.telefone +
