@@ -1,4 +1,5 @@
 import { criarVetorPessoaJuridica } from "./criarVetorPessoaJuridica";
+import { fetchCEP } from "./services/viaCep";
 
 const vetCnpj = [
     '56991441000157',
@@ -11,9 +12,15 @@ const vetCnpj = [
 ];
 
 
+
 async function mostrarResultado() {
+    
+    //console.log("\n - - - - - - Teste cep inválido - - - - - - \n")
+    // await fetchCEP("123456v-78");
+
     const vetPessoaJuridica = await criarVetorPessoaJuridica(vetCnpj);
 
+    console.log("\n - - - - - - Método toString() - - - - - -\n")
     vetPessoaJuridica.forEach(objeto => {
         console.log(objeto.toString());
     });

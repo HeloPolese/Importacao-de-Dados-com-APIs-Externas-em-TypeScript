@@ -16,8 +16,6 @@ export async function fetchCNPJ(_cnpj: string): Promise<PessoaJuridica> {
             throw new Error("A API suporta somente três consultas por minuto!");
         }
 
-
-
         if (response.ok) {
             const responseJSON = await response.json();
 
