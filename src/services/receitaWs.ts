@@ -10,11 +10,13 @@ export async function fetchCNPJ(_cnpj: string): Promise<PessoaJuridica> {
         const cnpj = verificaCnpj(_cnpj);
 
         const response = await fetch(`https://receitaws.com.br/v1/cnpj/${cnpj}`);
-        console.log(response);
+
 
         if (response.status == 429) {
             throw new Error("A API suporta somente três consultas por minuto!");
         }
+
+
 
         if (response.ok) {
             const responseJSON = await response.json();
@@ -31,7 +33,7 @@ export async function fetchCNPJ(_cnpj: string): Promise<PessoaJuridica> {
 
         }
         else {
-            throw new Error("erro ao pegar dados da api!");
+            throw new Error("CPNJ não encontrado na base de dados!");
         }
     }
     catch (error: any) {
