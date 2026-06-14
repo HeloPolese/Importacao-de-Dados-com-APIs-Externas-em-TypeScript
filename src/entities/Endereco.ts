@@ -54,7 +54,7 @@ export class Endereco {
     }
 
     public toString(): string {
-        return "Cep: " + this.cep +
+        return "\nCep: " + this.cep +
             "\nLogradouro: " + this.logradouro +
             "\nBairro: " + this.bairro +
             "\nEstado: " + this.estado +

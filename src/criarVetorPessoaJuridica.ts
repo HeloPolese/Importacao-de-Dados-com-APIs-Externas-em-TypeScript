@@ -15,7 +15,9 @@ const repositorio = new RepositorioPessoaJuridica();
 
 export async function criarVetorPessoaJuridica(_vetor: Array<string>): Promise<Array<PessoaJuridica>> {
 
-    console.log("Iniciando a requisição\n");
+     console.log("Iniciando a requisição\n");
+
+    //await delay(60000);
 
     for (let i = 0; i < _vetor.length; i++) {
         const cpnj = _vetor[i];
@@ -41,6 +43,8 @@ export async function criarVetorPessoaJuridica(_vetor: Array<string>): Promise<A
         await delay(21000);
 
     }
-    console.log(new Date().toLocaleTimeString());
+
+    console.log(" - - - - - - listagem de pessoa jurídica - - - - - - ");
+
     return repositorio.listar();
 }
