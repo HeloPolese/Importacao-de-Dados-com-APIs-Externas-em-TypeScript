@@ -1,0 +1,24 @@
+{
+  "name": "importacao-de-dados-com-apis-externas-em-typescript",
+  "version": "1.0.0",
+  "description": "Projeto em TypeScript utilizando programação assíncrona, consumo de APIs externas, Async/Await e orientação a objetos.",
+  "main": "./src/test.ts",
+  "scripts": {
+    "test": "node ./src/test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeloPolese/Importacao-de-Dados-com-APIs-Externas-em-TypeScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HeloPolese/Importacao-de-Dados-com-APIs-Externas-em-TypeScript/issues"
+  },
+  "homepage": "https://github.com/HeloPolese/Importacao-de-Dados-com-APIs-Externas-em-TypeScript#readme",
+  "dependencies": {
+    "node-cron": "^4.2.1"
+  }
+}
