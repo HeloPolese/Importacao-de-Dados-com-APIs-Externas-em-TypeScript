@@ -1,5 +1,4 @@
 import { criarVetorPessoaJuridica } from "./criarVetorPessoaJuridica";
-import { fetchCEP } from "./services/viaCep";
 
 const vetCnpj = [
     '56991441000157',
@@ -10,8 +9,6 @@ const vetCnpj = [
     '59717553000102',
     '00623904000173'
 ];
-
-
 
 async function mostrarResultado() {
     

@@ -6,7 +6,14 @@ export class Endereco {
     private _ddd: string;
 
     constructor(cep: string, logradouro: string, bairro: string, estado: string, ddd: string) {
-        this._cep = cep;
+        const cepFormatado = cep.replace(/\D/g, '');
+        if (cepFormatado.length == 8) {
+            this._cep = cep;
+        }
+        else {
+            throw new Error(" O CEP deve conter 8 números!");
+        }
+
         this._logradouro = logradouro;
         this._bairro = bairro;
         this._estado = estado;
@@ -31,10 +38,6 @@ export class Endereco {
 
     public get ddd(): string {
         return this._ddd;
-    }
-
-    public set cep(novoCep: string) {
-            this._cep = novoCep;
     }
 
     public set logradouro(novoLogradouro: string) {

@@ -15,7 +15,7 @@ const repositorio = new RepositorioPessoaJuridica();
 
 export async function criarVetorPessoaJuridica(_vetor: Array<string>): Promise<Array<PessoaJuridica>> {
 
-     console.log("Iniciando a requisição\n");
+    console.log("Iniciando a requisição\n");
 
     //await delay(60000);
 
@@ -24,10 +24,10 @@ export async function criarVetorPessoaJuridica(_vetor: Array<string>): Promise<A
 
         try {
 
-            if (i > 0 && i % 2 == 0) {
-                await delay(21000);
-            }
-
+            /*  if (i > 0 && i % 2 == 0) {
+                 await delay(21000);
+             }
+            */
             const resultadoEmpresa: PessoaJuridica = await fetchCNPJ(cpnj!);
 
             repositorio.adicionar(resultadoEmpresa);

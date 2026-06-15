@@ -8,10 +8,6 @@ export function verificaCnpj(_cnpj: string) {
 
         const cnpjFormatado = _cnpj.replace(/\D/g, "");
 
-        if (cnpjFormatado.length != 14) {
-            throw new Error("O CNPJ deve conter 14 digitos!");
-        }
-
         return cnpjFormatado;
 
     } catch (error: any) {
@@ -30,10 +26,6 @@ export function verificaCep(cep: string) {
         }
 
         const cepFormatado = cep.replace(/\D/g, "");
-
-        if (cepFormatado.length != 8) {
-            throw new Error("O CEP deve conter 8 digitos!");
-        }
 
         return cepFormatado;
     }
