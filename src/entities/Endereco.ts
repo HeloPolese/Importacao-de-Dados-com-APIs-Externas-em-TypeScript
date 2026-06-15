@@ -35,7 +35,7 @@ export class Endereco {
 
     public set cep(novoCep: string) {
             this._cep = novoCep;
-    }
+    } //tirar cep de enrereço set
 
     public set logradouro(novoLogradouro: string) {
         this._logradouro = novoLogradouro;

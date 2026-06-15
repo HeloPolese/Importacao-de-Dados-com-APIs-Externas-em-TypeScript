@@ -16,7 +16,7 @@ const vetCnpj = [
 async function mostrarResultado() {
     
     //console.log("\n - - - - - - Teste cep inválido - - - - - - \n")
-    // await fetchCEP("123456v-78");
+    //await fetchCEP("123456v-78");
 
     const vetPessoaJuridica = await criarVetorPessoaJuridica(vetCnpj);
 

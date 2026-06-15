@@ -17,16 +17,12 @@ export async function criarVetorPessoaJuridica(_vetor: Array<string>): Promise<A
 
      console.log("Iniciando a requisição\n");
 
-    //await delay(60000);
+    //await delay(61000);
 
     for (let i = 0; i < _vetor.length; i++) {
         const cpnj = _vetor[i];
 
         try {
-
-            if (i > 0 && i % 2 == 0) {
-                await delay(21000);
-            }
 
             const resultadoEmpresa: PessoaJuridica = await fetchCNPJ(cpnj!);
 

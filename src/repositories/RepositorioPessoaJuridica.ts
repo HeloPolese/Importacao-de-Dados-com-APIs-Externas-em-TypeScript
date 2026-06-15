@@ -9,7 +9,7 @@ export class RepositorioPessoaJuridica {
     }
 
     public listar(): Array<PessoaJuridica> {
-        return this._listaPessoaJuridica;
+        return this._listaPessoaJuridica.slice();
     }
 
-}
+}//fazer verificação se empresas repetem cnpj
